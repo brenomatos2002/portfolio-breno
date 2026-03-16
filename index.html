@@ -197,41 +197,36 @@
     }
 
     /* HABILIDADES */
-    .skills-progress {
+    .skills-grid {
       display: flex;
-      flex-direction: column;
-      gap: 25px;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
       margin-top: 30px;
     }
 
     .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
       background: rgba(30, 41, 59, 0.92);
       padding: 20px;
       border-radius: 12px;
+      transition: 0.3s;
+      width: 120px;
     }
 
-    .skill-title {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+    }
+
+    .skill-item p {
+      margin: 0;
       font-weight: bold;
-      font-size: 18px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 14px;
-      background: #334155;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-      border-radius: 999px;
-      transition: width 1.8s ease;
+      color: #38bdf8;
+      text-align: center;
     }
 
     /* PROJETOS */
@@ -319,7 +314,7 @@
     </div>
 
     <div class="hero-image reveal">
-     <img src="foto-breno.png" alt="Foto de Breno Matos" />
+      <img src="foto-breno.png" alt="Foto de Breno Matos" />
     </div>
   </div>
 
@@ -328,7 +323,7 @@
 
     <div class="card">
       <p>
-        Olá! Sou Breno Matos,tenho 24 anos, sou estudante de Análise e Desenvolvimento de Sistemas. Tenho experiência em HTML, CSS, JavaScript, Vue.js e Java, e crio projetos práticos como sites interativos e sistemas de gerenciamento. Sou proativo, curioso e busco minha primeira oportunidade como desenvolvedor para aplicar meus conhecimentos e crescer profissionalmente.
+        Olá! Sou Breno Matos, tenho 24 anos, sou estudante de Análise e Desenvolvimento de Sistemas. Tenho experiência em HTML, CSS, JavaScript, Vue.js e Java, e crio projetos práticos como sites interativos e sistemas de gerenciamento. Sou proativo, curioso e busco minha primeira oportunidade como desenvolvedor para aplicar meus conhecimentos e crescer profissionalmente.
       </p>
     </div>
   </section>
@@ -336,65 +331,35 @@
   <section id="habilidades" class="reveal">
     <h2>Habilidades</h2>
 
-    <div class="skills-progress">
+    <div class="skills-grid">
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-html5"></i> HTML</span>
-          <span>95%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="95%"></div>
-        </div>
+        <i class="fab fa-html5 fa-3x"></i>
+        <p>HTML</p>
       </div>
 
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-css3-alt"></i> CSS</span>
-          <span>90%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="90%"></div>
-        </div>
+        <i class="fab fa-css3-alt fa-3x"></i>
+        <p>CSS</p>
       </div>
 
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-js"></i> JavaScript</span>
-          <span>80%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="80"></div>
-        </div>
+        <i class="fab fa-js fa-3x"></i>
+        <p>JavaScript</p>
       </div>
 
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-vuejs"></i> Vue.js</span>
-          <span>85%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="85%"></div>
-        </div>
+        <i class="fab fa-vuejs fa-3x"></i>
+        <p>Vue.js</p>
       </div>
 
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-git-alt"></i> Git</span>
-          <span>75%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="75%"></div>
-        </div>
+        <i class="fab fa-git-alt fa-3x"></i>
+        <p>Git</p>
       </div>
 
       <div class="skill-item">
-        <div class="skill-title">
-          <span><i class="fab fa-java"></i> Java</span>
-          <span>70%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" data-width="70%"></div>
-        </div>
+        <i class="fab fa-java fa-3x"></i>
+        <p>Java</p>
       </div>
     </div>
   </section>
@@ -475,11 +440,6 @@
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("active");
-
-          const bars = entry.target.querySelectorAll(".progress-fill");
-          bars.forEach((bar) => {
-            bar.style.width = bar.getAttribute("data-width");
-          });
         }
       });
     }, { threshold: 0.2 });
