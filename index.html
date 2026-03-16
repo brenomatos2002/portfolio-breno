@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breno Matos | Portfolio</title>
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    }
+
+    /* MENU */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #38bdf8;
+    }
+
+    nav div {
+      position: absolute;
+      right: 40px;
+    }
+
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 20px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 80px 120px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      line-height: 1.3;
+    }
+
+    .hero-text span.name {
+      color: #38bdf8;
+      font-size: 60px;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .hero-text p {
+      font-size: 22px;
+      color: #94a3b8;
+      margin-top: 18px;
+      min-height: 32px;
+    }
+
+    .typing {
+      color: #38bdf8;
+      font-weight: bold;
+      border-right: 3px solid #38bdf8;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: #38bdf8;
+      color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 340px;
+      max-width: 100%;
+      border-radius: 20px;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.3);
+      object-fit: cover;
+    }
+
+    /* SEÇÕES */
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      font-size: 34px;
+      margin-bottom: 25px;
+      color: #38bdf8;
+    }
+
+    /* ANIMAÇÃO AO ROLAR */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CARDS */
+    .card {
+      background: rgba(30, 41, 59, 0.92);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* HABILIDADES */
+    .skills-progress {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .skill-item {
+      background: rgba(30, 41, 59, 0.92);
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .skill-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 14px;
+      background: #334155;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+      border-radius: 999px;
+      transition: width 1.8s ease;
+    }
+
+    /* PROJETOS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .projects-grid .card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* CONTATO */
+    .contact-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      margin-top: 40px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav div {
+        position: static;
+      }
+
+      .hero {
+        padding: 60px 25px;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero-text h1 {
+        font-size: 38px;
+      }
+
+      .hero-text span.name {
+        font-size: 46px;
+      }
+
+      .hero-image img {
+        width: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <nav>
+    <h2>Portfólio</h2>
+    <div>
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-text reveal">
+      <h1>
+        Olá, eu sou o
+        <span class="name">Breno Augusto De Matos</span>
+      </h1>
+
+      <p><span class="typing" id="typing"></span></p>
+
+      <a class="button" href="cv.pdf" target="_blank">
+        Baixar Currículo
+      </a>
+    </div>
+
+    <div class="hero-image reveal">
+     <img src="foto-breno.png" alt="Foto de Breno Matos" />
+    </div>
+  </div>
+
+  <section id="sobre" class="reveal">
+    <h2>Sobre mim</h2>
+
+    <div class="card">
+      <p>
+        Olá! Sou Breno Matos,tenho 24 anos, sou estudante de Análise e Desenvolvimento de Sistemas. Tenho experiência em HTML, CSS, JavaScript, Vue.js e Java, e crio projetos práticos como sites interativos e sistemas de gerenciamento. Sou proativo, curioso e busco minha primeira oportunidade como desenvolvedor para aplicar meus conhecimentos e crescer profissionalmente.
+      </p>
+    </div>
+  </section>
+
+  <section id="habilidades" class="reveal">
+    <h2>Habilidades</h2>
+
+    <div class="skills-progress">
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-html5"></i> HTML</span>
+          <span>95%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="95%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-css3-alt"></i> CSS</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="90%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-js"></i> JavaScript</span>
+          <span>80%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="80%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-vuejs"></i> Vue.js</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="85%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-git-alt"></i> Git</span>
+          <span>75%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="75%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-title">
+          <span><i class="fab fa-java"></i> Java</span>
+          <span>70%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" data-width="70%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="reveal">
+    <h2>Projetos</h2>
+
+    <div class="projects-grid">
+      <div class="card">
+        <h3>Church In Cloud</h3>
+        <p>Sistema de gestão para igrejas.</p>
+      </div>
+
+      <div class="card">
+        <h3>Aplicativo Bíblia</h3>
+        <p>Aplicativo com versículo do dia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="reveal">
+    <h2>Contato</h2>
+
+    <div class="card">
+      <p>Email: brenodematos2002@gmail.com</p>
+      <p>Telefone: (11) 97222-2038</p>
+
+      <div class="contact-links">
+        <a class="button" href="https://github.com/BrenoMatos2002" target="_blank">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Breno Matos
+  </footer>
+
+  <script>
+    /* TEXTO DIGITANDO */
+    const roles = ["Developer", "Front-end", "Vue"];
+    const typingElement = document.getElementById("typing");
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      const currentText = currentRole.substring(0, charIndex);
+      typingElement.textContent = currentText;
+
+      if (!isDeleting) {
+        charIndex++;
+        if (charIndex > currentRole.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1000);
+          return;
+        }
+      } else {
+        charIndex--;
+        if (charIndex < 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          charIndex = 0;
+        }
+      }
+
+      setTimeout(typeEffect, isDeleting ? 60 : 120);
+    }
+
+    typeEffect();
+
+    /* REVEAL AO ROLAR */
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+
+          const bars = entry.target.querySelectorAll(".progress-fill");
+          bars.forEach((bar) => {
+            bar.style.width = bar.getAttribute("data-width");
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    reveals.forEach((el) => observer.observe(el));
+
+    /* PARTÍCULAS */
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    let particlesArray = [];
+    const numberOfParticles = 90;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.7 - 0.35;
+        this.speedY = Math.random() * 0.7 - 0.35;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.fillStyle = "rgba(56, 189, 248, 0.8)";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = dx * dx + dy * dy;
+
+          if (distance < 12000) {
+            ctx.strokeStyle = "rgba(56, 189, 248, 0.10)";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+
+      connectParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+  </script>
+</body>
+</html>
